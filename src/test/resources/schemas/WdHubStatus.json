@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Generated Schema",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "ready": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "message",
+        "ready"
+      ]
+    }
+  },
+  "required": [
+    "value"
+  ]
+}
