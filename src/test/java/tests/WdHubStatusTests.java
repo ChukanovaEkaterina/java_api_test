@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 public class WdHubStatusTests extends TestBase {
 
@@ -20,7 +19,9 @@ public class WdHubStatusTests extends TestBase {
                 .get("/wd/hub/status")
                 .then()
                 .log().all()
-                .statusCode(200);
+                .statusCode(200)
+                .body("value", notNullValue())
+                .body("value.message", notNullValue());
     }
 
     @Test
@@ -32,7 +33,8 @@ public class WdHubStatusTests extends TestBase {
                 .get("/wd/hub/status")
                 .then()
                 .log().all()
-                .statusCode(401);
+                .statusCode(401)
+                .body(containsString("401 Authorization Required"));
     }
 
     @Test
